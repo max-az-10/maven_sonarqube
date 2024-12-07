@@ -13,18 +13,11 @@ pipeline {
             }
         }
 
-        // Build the project
-        stage('Build') {
-            steps {
-                sh 'mvn clean package'
-            }
-        }
-
-        // Run SonarQube analysis
-        stage('Sonarqube') {
-            steps {
-                withSonarQubeEnv('SonarQube-Server') {  // Ensure 'SonarQube_server' is defined in Jenkins configuration
-                    sh 'mvn sonar:sonar'
+        // Build the project and Run SonarQube analysis
+        stage('Build-SonarQube') {
+            withSonarQubeEnv('SonarQube-Server') {  // Ensure 'SonarQube_server' is defined in Jenkins configuration
+                steps {
+                    sh 'mvn clean package sonar:sonar'
                 }
             }
         }
