@@ -15,7 +15,7 @@ pipeline {
 
         // Build the project and Run SonarQube analysis
         stage('Build-SonarQube') {
-            withSonarQubeEnv('SonarQube-Server') {  // Ensure 'SonarQube_server' is defined in Jenkins configuration
+            withSonarQubeEnv('SonarQube-Server') {  // Ensure 'SonarQube-Server' is defined in Jenkins configuration
                 steps {
                     sh 'mvn clean package sonar:sonar'
                 }
