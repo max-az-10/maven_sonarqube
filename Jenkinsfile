@@ -16,15 +16,23 @@ pipeline {
         // Simple stage to verify echo
         stage('Verify echo!!') {
             steps {
-                sh 'echo "This is to verify echo!"'
+                sh 'echo "This is to verify echo command!!!"'
             }
         }
 
-        // Build and run SonarQube analysis
-        stage('build & sonarqube') {
+        // Build and 
+        stage('Build') {
             steps {
-                withSonarQubeEnv('SonarQube_server') {  // Ensure 'SonarQube_server' is defined in Jenkins configuration
-                    sh 'mvn clean package sonar:sonar'
+                    sh 'mvn clean package'
+                }
+            }
+        }
+    
+        // Run SonarQube analysis
+        stage(Sonarqube') {
+            steps {
+                withSonarQubeEnv('SonarQube-Server') {  // Ensure 'SonarQube_server' is defined in Jenkins configuration
+                    sh 'mvn sonar:sonar'
                 }
             }
         }
