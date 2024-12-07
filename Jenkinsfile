@@ -29,7 +29,7 @@ pipeline {
         }
     
         // Run SonarQube analysis
-        stage(Sonarqube') {
+        stage('Sonarqube') {
             steps {
                 withSonarQubeEnv('SonarQube-Server') {  // Ensure 'SonarQube_server' is defined in Jenkins configuration
                     sh 'mvn sonar:sonar'
