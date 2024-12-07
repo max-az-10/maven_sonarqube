@@ -13,27 +13,26 @@ pipeline {
             }
         }
 
-        // Simple stage to verify echo
-        stage('Verify echo!!') {
+        // Build the project
+        stage('Build') {
             steps {
-                sh 'echo "This is to verify echo command!!!"'
+                sh 'mvn clean package'
             }
         }
 
-        // Build and 
-        stage('Build') {
-            steps {
-                    sh 'mvn clean package'
-                }
-            }
-        }
-    
         // Run SonarQube analysis
         stage('Sonarqube') {
             steps {
                 withSonarQubeEnv('SonarQube-Server') {  // Ensure 'SonarQube_server' is defined in Jenkins configuration
                     sh 'mvn sonar:sonar'
                 }
+            }
+        }
+
+        // Simple stage to verify echo
+        stage('Verify echo!!') {
+            steps {
+                sh 'echo "This pipeline works as expected!!!"'
             }
         }
     }
