@@ -1,6 +1,8 @@
 pipeline {
     agent any  // All stages will run on any available agent
-
+    tools {
+        maven 'Maven 3.6.3'  // Refer to the Maven version you've configured
+        
     stages {
 
         // Checkout code from GitHub repository
